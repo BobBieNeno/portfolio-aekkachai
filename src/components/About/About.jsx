@@ -17,7 +17,7 @@ export default function About() {
           <div className="about__avatar-card">
             <div className="about__avatar">
               <img
-                src="public\img\IMG_Avatar.png"
+                src="/img/IMG_Avatar.png"
                 alt="Profile"
                 className="about__avatar-img"
               />

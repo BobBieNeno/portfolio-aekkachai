@@ -106,12 +106,12 @@ export default function Projects() {
                   <img
                     src={
                       [
-                        "/public/img/โปสเตอร์ - ควบคุมสต็อกง่ายๆ (3).png",
-                        "/public/img/โปสเตอร์ - ควบคุมสต็อกง่ายๆ (4).png",
-                        "/public/img/โปสเตอร์ - ควบคุมสต็อกง่ายๆ (2).png",
-                        "/public/img/logo_Soft.jpg",
-                        "/public/img/โปสเตอร์ - ควบคุมสต็อกง่ายๆ (5).png",
-                        "/public/img/โปสเตอร์ - ควบคุมสต็อกง่ายๆ (6).png",
+                        "/img/psoter3.png",
+                        "/img/psoter4.png",
+                        "/img/psoter2.png",
+                        "/img/logo_Soft.jpg",
+                        "/img/psoter5.png",
+                        "/img/psoter6.png",
                       ][i]
                     }
                     alt={p.title}
