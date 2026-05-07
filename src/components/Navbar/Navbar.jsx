@@ -1,35 +1,40 @@
-import React, { useState } from 'react'
-import './Navbar.css'
+import React, { useState } from "react";
+import "./Navbar.css";
 
 const NAV_LINKS = [
-  { label: 'About',   href: '#about'   },
-  { label: 'Skills',  href: '#skills'  },
-  { label: 'Work',    href: '#projects'},
-  { label: 'Contact', href: '#contact' },
-]
+  { label: "About", href: "#about" },
+  // { label: "Skills", href: "#skills" },
+  { label: "Work", href: "#projects" },
+  { label: "Contact", href: "#contact" },
+];
 
 export default function Navbar({ scrolled }) {
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleNavClick = (href) => {
-    setMenuOpen(false)
-    const el = document.querySelector(href)
-    if (el) el.scrollIntoView({ behavior: 'smooth' })
-  }
+    setMenuOpen(false);
+    const el = document.querySelector(href);
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
-    <header className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
+    <header className={`navbar ${scrolled ? "navbar--scrolled" : ""}`}>
       <nav className="navbar__inner container">
-
         {/* Logo */}
-        <a className="navbar__logo" href="#hero" onClick={() => handleNavClick('#hero')}>
+        <a
+          className="navbar__logo"
+          href="#hero"
+          onClick={() => handleNavClick("#hero")}
+        >
           <span className="logo-ui">CS</span>
-          <span className="logo-senjor">Portfo<span className="logo-dot">.</span></span>
+          <span className="logo-senjor">
+            Portfo<span className="logo-dot">.</span>
+          </span>
         </a>
 
         {/* Desktop nav links */}
         <ul className="navbar__links">
-          {NAV_LINKS.map(link => (
+          {NAV_LINKS.map((link) => (
             <li key={link.label}>
               <button
                 className="navbar__link"
@@ -44,8 +49,8 @@ export default function Navbar({ scrolled }) {
         {/* Resume CTA */}
         <a
           className="navbar__resume"
-          href="/resume.pdf"
-          download="Resume_UISenjor.pdf"
+          href="/img/RESUME_Aekkachai_SAP1.pdf"
+          download="Resume_Aekkachai_SAP.pdf"
           aria-label="Download Resume"
         >
           Resume
@@ -53,17 +58,19 @@ export default function Navbar({ scrolled }) {
 
         {/* Mobile hamburger */}
         <button
-          className={`navbar__hamburger ${menuOpen ? 'open' : ''}`}
+          className={`navbar__hamburger ${menuOpen ? "open" : ""}`}
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
         >
-          <span /><span /><span />
+          <span />
+          <span />
+          <span />
         </button>
       </nav>
 
       {/* Mobile menu */}
-      <div className={`navbar__mobile-menu ${menuOpen ? 'open' : ''}`}>
-        {NAV_LINKS.map(link => (
+      <div className={`navbar__mobile-menu ${menuOpen ? "open" : ""}`}>
+        {NAV_LINKS.map((link) => (
           <button
             key={link.label}
             className="mobile-link"
@@ -72,10 +79,14 @@ export default function Navbar({ scrolled }) {
             {link.label}
           </button>
         ))}
-        <a className="mobile-resume" href="/resume.pdf" download>
+        <a
+          className="mobile-resume"
+          href="/img/RESUME_Aekkachai_SAP1.pdf"
+          download
+        >
           Download Resume
         </a>
       </div>
     </header>
-  )
+  );
 }

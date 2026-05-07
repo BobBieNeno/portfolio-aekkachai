@@ -26,17 +26,21 @@ export default function Footer() {
         </div>
 
         <div className="footer__links">
-          {["About", "Skills", "Work", "Contact"].map((link) => (
+          {[
+            { label: "About", target: "about" },
+            { label: "Work", target: "projects" },
+            { label: "Contact", target: "contact" },
+          ].map((item) => (
             <button
-              key={link}
+              key={item.label}
               className="footer__link"
               onClick={() =>
                 document
-                  .querySelector(`#${link.toLowerCase()}`)
+                  .querySelector(`#${item.target}`)
                   ?.scrollIntoView({ behavior: "smooth" })
               }
             >
-              {link}
+              {item.label}
             </button>
           ))}
         </div>
