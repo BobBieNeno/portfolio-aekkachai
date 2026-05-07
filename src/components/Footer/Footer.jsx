@@ -21,8 +21,7 @@ export default function Footer() {
             </span>
           </a>
           <p className="footer__copy">
-            © {year} UI SENJOR. Built with React &amp; passion for good
-            software.
+            © {year} Built with React &amp; passion for good software.
           </p>
         </div>
 
