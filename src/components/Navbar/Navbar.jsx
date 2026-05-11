@@ -49,8 +49,8 @@ export default function Navbar({ scrolled }) {
         {/* Resume CTA */}
         <a
           className="navbar__resume"
-          href="/img/RESUME_Aekkachai_SAP1.pdf"
-          download="Resume_Aekkachai_SAP.pdf"
+          href="/img/RESUME_Aekkachai_.pdf"
+          download="Resume_Aekkachai.pdf"
           aria-label="Download Resume"
         >
           Resume
@@ -79,11 +79,7 @@ export default function Navbar({ scrolled }) {
             {link.label}
           </button>
         ))}
-        <a
-          className="mobile-resume"
-          href="/img/RESUME_Aekkachai_SAP1.pdf"
-          download
-        >
+        <a className="mobile-resume" href="/img/RESUME_Aekkachai_.pdf" download>
           Download Resume
         </a>
       </div>
