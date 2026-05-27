@@ -49,9 +49,10 @@ export default function Navbar({ scrolled }) {
         {/* Resume CTA */}
         <a
           className="navbar__resume"
-          href="/img/RESUME_Aekkachai_.pdf"
-          download="Resume_Aekkachai.pdf"
-          aria-label="Download Resume"
+          href="https://canva.link/6yvd1clm58i9wyi"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open Resume"
         >
           Resume
         </a>
@@ -79,8 +80,13 @@ export default function Navbar({ scrolled }) {
             {link.label}
           </button>
         ))}
-        <a className="mobile-resume" href="/img/RESUME_Aekkachai_.pdf" download>
-          Download Resume
+        <a
+          className="mobile-resume"
+          href="https://canva.link/6yvd1clm58i9wyi"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Resume
         </a>
       </div>
     </header>
