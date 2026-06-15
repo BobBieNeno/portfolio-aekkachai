@@ -114,6 +114,7 @@ const PROJECTS = [
       "Prisma",
       "PostgreSQL",
       "Stripe API",
+      "Golang",
     ],
     metrics: {
       label: "Project Type",
