@@ -119,9 +119,9 @@ const PROJECTS = [
       label: "Project Type",
       value: "Personal",
     },
-    linkGithub: "",
-    linkWeb: "",
-    link: "",
+    linkGithub: "https://github.com/BobBieNeno/live-donate-backend.git",
+    linkWeb: "https://live-donate.vercel.app/",
+    link: "https://github.com/BobBieNeno/live-donate.git",
     color: "#F5F5F3",
   },
 ];
