@@ -104,11 +104,21 @@ const PROJECTS = [
   },
   {
     id: 9,
-    tag: "UI/UX",
-    title: "App Design System",
-    desc: "Designed modern UI/UX prototypes for mobile and web applications, focusing on usability, responsive layouts, and smooth user experience. Created wireframes and interactive designs using Figma.",
-    tech: ["Figma", "UI Design", "UX Research", "Prototype"],
-    metrics: { label: "Tools", value: "Figma" },
+    tag: "Full-Stack",
+    title: "DonateOverlay",
+    desc: "Built a personal full-stack donation platform for streamers and creators, inspired by real-world feedback from friends. The features include real-time donation alerts, OBS integration, QR payments, reward cards, public donation pages, and a customizable dashboard, focusing on modern UX and scalable web architecture.",
+    tech: [
+      "Next.js",
+      "TypeScript",
+      "WebSocket",
+      "Prisma",
+      "PostgreSQL",
+      "Stripe API",
+    ],
+    metrics: {
+      label: "Project Type",
+      value: "Personal",
+    },
     linkGithub: "",
     linkWeb: "",
     link: "",
@@ -166,7 +176,7 @@ export default function Projects() {
                         "/img/psoter6.png",
                         "/img/psoter7.png",
                         "/img/psoter8.png",
-                        "/img/psoter6.png",
+                        "/img/psoter9.png",
                       ][i]
                     }
                     alt={p.title}
