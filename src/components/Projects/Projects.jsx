@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import LoadingImage from "../LoadingImage/LoadingImage";
 import "./Projects.css";
 
 const PROJECTS = [
@@ -166,7 +167,7 @@ export default function Projects() {
               {/* Project Image */}
               <div className="project-card__visual">
                 <div className="project-card__visual-inner">
-                  <img
+                  <LoadingImage
                     src={
                       [
                         "/img/psoter3.png",

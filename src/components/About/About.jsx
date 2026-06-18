@@ -1,4 +1,5 @@
 import React from "react";
+import LoadingImage from "../LoadingImage/LoadingImage";
 import "./About.css";
 
 const STATS = [
@@ -16,7 +17,7 @@ export default function About() {
         <div className="about__card-col">
           <div className="about__avatar-card">
             <div className="about__avatar">
-              <img
+              <LoadingImage
                 src="/img/IMG_Avatar.png"
                 alt="Profile"
                 className="about__avatar-img"

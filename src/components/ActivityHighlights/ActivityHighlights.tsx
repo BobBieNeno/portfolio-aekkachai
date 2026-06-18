@@ -1,5 +1,6 @@
-import { useEffect, useMemo, useRef, useState, type MutableRefObject, type SyntheticEvent } from "react";
+import { useEffect, useMemo, useRef, useState, type MutableRefObject } from "react";
 import Stories from "react-insta-stories";
+import LoadingImage from "../LoadingImage/LoadingImage";
 
 type StoryAction = (action: "pause" | "play" | string, bufferAction?: boolean) => void;
 
@@ -103,15 +104,6 @@ const activities: Activity[] = [
 const avatarImage = "/images/activity/avatar.jpg";
 const avatarFallback = "/img/IMG_Avatar.png";
 
-function createFallbackImageHandler(fallbackImage: string) {
-  return (event: SyntheticEvent<HTMLImageElement>) => {
-    const image = event.currentTarget;
-
-    if (image.src.endsWith(fallbackImage)) return;
-    image.src = fallbackImage;
-  };
-}
-
 function ActivityStory({
   activity,
   action,
@@ -121,7 +113,7 @@ function ActivityStory({
   userPausedRef: MutableRefObject<boolean>;
 }) {
   useEffect(() => {
-    if (!userPausedRef.current) action?.("play", true);
+    if (!userPausedRef.current) action?.("pause", true);
   }, [activity.title, action, userPausedRef]);
 
   const handleImageReady = () => {
@@ -130,12 +122,13 @@ function ActivityStory({
 
   return (
     <div className="relative h-full w-full overflow-hidden bg-black text-white">
-      <img
+      <LoadingImage
         src={activity.image}
+        fallbackSrc={activity.fallbackImage}
         alt={activity.title}
         onLoad={handleImageReady}
-        onError={createFallbackImageHandler(activity.fallbackImage)}
         className="h-full w-full object-cover"
+        wrapperClassName="loading-image--dark"
       />
 
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/70 via-black/15 to-black/88" />
@@ -144,11 +137,12 @@ function ActivityStory({
       <div className="absolute left-5 right-24 top-7 z-10 flex items-center justify-between gap-3">
         <div className="flex min-w-0 items-center gap-3 rounded-full border border-white/12 bg-black/18 py-1.5 pl-1.5 pr-4 backdrop-blur-md">
           <span className="grid h-10 w-10 shrink-0 place-items-center overflow-hidden rounded-full border border-white/35 bg-white/15">
-            <img
+            <LoadingImage
               src={avatarImage}
+              fallbackSrc={avatarFallback}
               alt="Profile avatar"
-              onError={createFallbackImageHandler(avatarFallback)}
               className="h-full w-full object-cover"
+              wrapperClassName="loading-image--dark"
             />
           </span>
           <span className="min-w-0">
@@ -337,11 +331,12 @@ export default function ActivityHighlights() {
                   }}
                 >
                   <div className="aspect-[3/4] overflow-hidden rounded-lg">
-                    <img
+                    <LoadingImage
                       src={activity.image}
+                      fallbackSrc={activity.fallbackImage}
                       alt={activity.title}
-                      onError={createFallbackImageHandler(activity.fallbackImage)}
                       className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                      wrapperClassName="loading-image--dark"
                     />
                   </div>
 
