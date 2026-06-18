@@ -29,6 +29,7 @@ export default function Footer() {
           {[
             { label: "About", target: "about" },
             { label: "Work", target: "projects" },
+            { label: "Activity", target: "activity" },
             { label: "Contact", target: "contact" },
           ].map((item) => (
             <button
