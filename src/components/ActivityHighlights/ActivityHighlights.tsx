@@ -112,21 +112,15 @@ function ActivityStory({
   activity: Activity;
   userPausedRef: MutableRefObject<boolean>;
 }) {
-  useEffect(() => {
-    if (!userPausedRef.current) action?.("pause", true);
-  }, [activity.title, action, userPausedRef]);
-
-  const handleImageReady = () => {
-    if (!userPausedRef.current) action?.("play", true);
-  };
-
   return (
     <div className="relative h-full w-full overflow-hidden bg-black text-white">
       <LoadingImage
         src={activity.image}
         fallbackSrc={activity.fallbackImage}
         alt={activity.title}
-        onLoad={handleImageReady}
+        onLoad={() => {
+          if (!userPausedRef.current) action?.("play", true);
+        }}
         className="h-full w-full object-cover"
         wrapperClassName="loading-image--dark"
       />
@@ -173,6 +167,8 @@ function ActivityStory({
 
 export default function ActivityHighlights() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [storyStartIndex, setStoryStartIndex] = useState(0);
+  const [storyKey, setStoryKey] = useState(0);
   const [isStoryPaused, setIsStoryPaused] = useState(false);
   const userPausedRef = useRef(false);
 
@@ -264,8 +260,9 @@ export default function ActivityHighlights() {
                 </button>
               </div>
               <Stories
+                key={storyKey}
                 stories={stories}
-                currentIndex={currentIndex}
+                currentIndex={storyStartIndex}
                 defaultInterval={5000}
                 height="min(76vh, 720px)"
                 isPaused={isStoryPaused}
@@ -327,6 +324,8 @@ export default function ActivityHighlights() {
                     }`}
                   onClick={() => {
                     setCurrentIndex(index);
+                    setStoryStartIndex(index);
+                    setStoryKey((key) => key + 1);
                     setIsStoryPaused(false);
                   }}
                 >
