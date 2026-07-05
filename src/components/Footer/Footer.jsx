@@ -1,8 +1,11 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import "./Footer.css";
 
 export default function Footer() {
+  const { t } = useTranslation();
   const year = new Date().getFullYear();
+  const links = t("footer.links", { returnObjects: true });
 
   const scrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
@@ -15,23 +18,16 @@ export default function Footer() {
             onClick={scrollTop}
             style={{ cursor: "pointer" }}
           >
-            <span className="footer-ui">CS</span>
+            <span className="footer-ui">{t("footer.logoPrefix")}</span>
             <span className="footer-senjor">
-              Profile<span className="footer-dot">.</span>
+              {t("footer.logoName")}<span className="footer-dot">.</span>
             </span>
           </a>
-          <p className="footer__copy">
-            © {year} Built with React &amp; passion for good software.
-          </p>
+          <p className="footer__copy">{t("footer.copy", { year })}</p>
         </div>
 
         <div className="footer__links">
-          {[
-            { label: "About", target: "about" },
-            { label: "Work", target: "projects" },
-            { label: "Activity", target: "activity" },
-            { label: "Contact", target: "contact" },
-          ].map((item) => (
+          {links.map((item) => (
             <button
               key={item.label}
               className="footer__link"
@@ -49,7 +45,7 @@ export default function Footer() {
         <button
           className="footer__back-top"
           onClick={scrollTop}
-          aria-label="Back to top"
+          aria-label={t("footer.backToTop")}
         >
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path

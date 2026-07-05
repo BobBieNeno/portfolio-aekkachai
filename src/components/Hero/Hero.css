@@ -140,10 +140,10 @@
 }
 .hero__btn--primary {
   background: var(--color-text);
-  color: #fff;
+  color: var(--color-on-strong);
 }
 .hero__btn--primary:hover {
-  background: #333;
+  background: var(--color-strong-hover);
   transform: translateY(-1px);
   box-shadow: var(--shadow-md);
 }

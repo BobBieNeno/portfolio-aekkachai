@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import "./Contact.css";
 
 const SOCIALS = [
@@ -45,35 +46,30 @@ const SOCIALS = [
 ];
 
 export default function Contact() {
+  const { t } = useTranslation();
   const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [status, setStatus] = useState("idle"); // idle | sending | sent
+  const [status, setStatus] = useState("idle");
 
-  const handleChange = (e) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  const handleChange = (event) => {
+    setForm((prev) => ({ ...prev, [event.target.name]: event.target.value }));
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   setStatus("sending");
-  //   // Simulate send delay
-  //   await new Promise((r) => setTimeout(r, 1400));
-  //   setStatus("sent");
-  //   setForm({ name: "", email: "", message: "" });
-  //   setTimeout(() => setStatus("idle"), 4000);
-  // };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     setStatus("sending");
 
-    const subject = encodeURIComponent(`Portfolio Contact from ${form.name}`);
-
+    const subject = encodeURIComponent(
+      t("contact.emailSubject", { name: form.name }),
+    );
     const body = encodeURIComponent(
-      `Name: ${form.name}\nEmail: ${form.email}\n\nMessage:\n${form.message}`,
+      t("contact.emailBody", {
+        name: form.name,
+        email: form.email,
+        message: form.message,
+      }),
     );
 
-    await new Promise((r) => setTimeout(r, 800));
+    await new Promise((resolve) => setTimeout(resolve, 800));
 
     window.open(
       `https://mail.google.com/mail/?view=cm&fs=1&to=aekkachaibob10@gmail.com&su=${subject}&body=${body}`,
@@ -82,39 +78,34 @@ export default function Contact() {
 
     setStatus("sent");
     setForm({ name: "", email: "", message: "" });
-
     setTimeout(() => setStatus("idle"), 4000);
   };
 
   return (
     <section id="contact" className="contact">
       <div className="container contact__inner">
-        {/* Left — info */}
         <div className="contact__info">
-          <p className="section-eyebrow">Contact</p>
+          <p className="section-eyebrow">{t("contact.eyebrow")}</p>
           <h2 className="section-title">
-            Let's build something
+            {t("contact.titleLine1")}
             <br />
-            <em>great together</em>
+            <em>{t("contact.titleEm")}</em>
           </h2>
-          <p className="contact__lead">
-            I'm open to internship opportunities, graduate roles, and exciting
-            freelance projects. Send me a message — I reply within 24 hours.
-          </p>
+          <p className="contact__lead">{t("contact.lead")}</p>
 
           <div className="contact__socials">
-            {SOCIALS.map((s) => (
+            {SOCIALS.map((social) => (
               <a
-                key={s.name}
-                href={s.href}
+                key={social.name}
+                href={social.href}
                 className="social-card"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <span className="social-icon">{s.icon}</span>
+                <span className="social-icon">{social.icon}</span>
                 <div className="social-text">
-                  <span className="social-name">{s.name}</span>
-                  <span className="social-handle">{s.handle}</span>
+                  <span className="social-name">{social.name}</span>
+                  <span className="social-handle">{social.handle}</span>
                 </div>
                 <span className="social-arrow">
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -132,17 +123,16 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Right — form */}
         <div className="contact__form-wrap">
           <form className="contact__form" onSubmit={handleSubmit} noValidate>
             <div className="form-row">
               <div className="form-field">
-                <label htmlFor="name">Name</label>
+                <label htmlFor="name">{t("contact.fields.name")}</label>
                 <input
                   id="name"
                   name="name"
                   type="text"
-                  placeholder="Your name"
+                  placeholder={t("contact.fields.namePlaceholder")}
                   value={form.name}
                   onChange={handleChange}
                   required
@@ -150,12 +140,12 @@ export default function Contact() {
                 />
               </div>
               <div className="form-field">
-                <label htmlFor="email">Email</label>
+                <label htmlFor="email">{t("contact.fields.email")}</label>
                 <input
                   id="email"
                   name="email"
                   type="email"
-                  placeholder="your@email.com"
+                  placeholder={t("contact.fields.emailPlaceholder")}
                   value={form.email}
                   onChange={handleChange}
                   required
@@ -165,12 +155,12 @@ export default function Contact() {
             </div>
 
             <div className="form-field">
-              <label htmlFor="message">Message</label>
+              <label htmlFor="message">{t("contact.fields.message")}</label>
               <textarea
                 id="message"
                 name="message"
                 rows={5}
-                placeholder="Tell me about your project or opportunity..."
+                placeholder={t("contact.fields.messagePlaceholder")}
                 value={form.message}
                 onChange={handleChange}
                 required
@@ -183,10 +173,10 @@ export default function Contact() {
               className={`form-submit ${status}`}
               disabled={status === "sending" || status === "sent"}
             >
-              {status === "idle" && "Send Message"}
+              {status === "idle" && t("contact.submit.idle")}
               {status === "sending" && (
                 <>
-                  <span className="spinner" /> Sending…
+                  <span className="spinner" /> {t("contact.submit.sending")}
                 </>
               )}
               {status === "sent" && (
@@ -200,7 +190,7 @@ export default function Contact() {
                       strokeLinejoin="round"
                     />
                   </svg>
-                  Message Sent!
+                  {t("contact.submit.sent")}
                 </>
               )}
             </button>

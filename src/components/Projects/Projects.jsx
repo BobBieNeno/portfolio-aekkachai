@@ -1,220 +1,89 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import LoadingImage from "../LoadingImage/LoadingImage";
 import "./Projects.css";
 
-const PROJECTS = [
-  {
-    id: 1,
-    tag: "Web App",
-    title: "Foods Vote ",
-    desc: "Develop a web application for random ranking calculation using an enrollment-based ranking algorithm for score ordering. Build the user interface with Angular Framework as the front-end and use Node.js as the back-end server for data processing.",
-    tech: ["angular ", "MySQL", "NodeJS", "Figma"],
-    metrics: { label: "Built in", value: "University Year 3" },
-    linkGithub: "https://github.com/PeerapatKaewdee/angular_vote_food#",
-    linkWeb: "",
-    link: "",
-    color: "#F5F5F3",
-  },
-  {
-    id: 2,
-    tag: "Flutter",
-    title: "Lottery Number Generator App",
-    desc: "Developed a mobile application for lottery number generation with a clean and user-friendly interface. Built using Flutter for cross-platform development, Go for backend services, MySQL for database management, and Figma for UI/UX design.",
-    tech: ["Flutter", "Go", "MySQL", "Figma"],
-    linkGithub: "https://github.com/SananTongchot/Lotto888",
-    linkWeb: "",
-    metrics: { label: "Built in", value: "University Project" },
-    link: "",
-    color: "#F5F5F3",
-  },
-  {
-    id: 3,
-    tag: "Flutter",
-    title: "LifeChance POS Application",
-    desc: "Developed a Point of Sale (POS) application for clothing sales management with product categories, sales tracking, and inventory support. Integrated Firebase Authentication for Google Sign-In, image management, reCAPTCHA API, and designed the interface using Figma.",
-    tech: ["Flutter", "Firebase", "MySQL", "Go", "Figma"],
-    metrics: { label: "Features", value: "Auth + POS" },
-    linkGithub: "https://github.com/BobBieNeno/Lifechance_UI",
-    linkWeb: "",
-    link: "",
-    color: "#F5F5F3",
-  },
-  {
-    id: 4,
-    tag: "Internship",
-    title: "Oracle APEX Developer Intern",
-    desc: "Worked on a Budget Management System during internship at Soft Square International (Dec 2025 – Mar 2026). Developed web applications using Oracle APEX and Oracle Database, designed database structures, implemented SQL/PLSQL business logic, built Interactive Grid with validations, created AP module workflows, generated reports with JasperReports and Excel, and improved UI/UX with JavaScript, jQuery, and Dynamic Actions.",
-    tech: ["Oracle APEX", "Oracle Database", "SQL", "PL/SQL", "JavaScript"],
-    metrics: { label: "Duration", value: "4 Months" },
-    linkGithub: "",
-    linkWeb: "",
-    link: "",
-    color: "#F5F5F3",
-  },
-  {
-    id: 5,
-    tag: "Backend",
-    title: "REST API Management",
-    desc: "Developed backend APIs for mobile and web applications with secure authentication, database integration, and data management features. Focused on scalable architecture and performance optimization using Go and MySQL.",
-    tech: ["Go", "MySQL", "REST API", "Postman"],
-    metrics: { label: "Focus", value: "Backend Logic" },
-    linkGithub: "https://github.com/BobBieNeno/LifeChance_BackEnd",
-    linkWeb: "",
-    link: "",
-    color: "#F5F5F3",
-  },
-  {
-    id: 6,
-    tag: "UI/UX",
-    title: "App Design System",
-    desc: "Designed modern UI/UX prototypes for mobile and web applications, focusing on usability, responsive layouts, and smooth user experience. Created wireframes and interactive designs using Figma.",
-    tech: ["Figma", "UI Design", "UX Research", "Prototype"],
-    metrics: { label: "Tools", value: "Figma" },
-    linkGithub: "",
-    linkWeb:
-      "https://www.figma.com/design/M9xrz94M8Yvz4NgvUiUaN3/Life-chane?node-id=0-1&t=ibwLfvqU7OBQmpPu-1",
-    link: "",
-    color: "#F5F5F3",
-  },
-  {
-    id: 7,
-    tag: "Full Stack",
-    title: "POS & AI Costing System",
-    desc: "Developed a full-stack point-of-sale system for managing products, inventory, and sales transactions. Integrated intelligent cost and profit margin calculations to help businesses optimize pricing and monitor their performance. Email : owner@example.com Password : AeZQMgdHXpXRYkVJ",
-    tech: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "AI Integration"],
-    metrics: { label: "Core Modules", value: "5+" },
-    linkGithub: "https://github.com/BobBieNeno/Pos-ai-costing.git",
-    linkWeb: "https://pos-ai-costing-9rvc-eight.vercel.app/login",
-    link: "",
-    color: "#F5F5F3",
-  },
-  {
-    id: 8,
-    tag: "Full Stack",
-    title: "True Mark Project",
-    desc: "Developed a full-stack tattoo studio platform featuring a bilingual responsive storefront, shopping cart, secure Stripe checkout, product and order management, and Gemini Vision-powered tattoo-image analysis. A server-side pricing engine was built to generate structured THB price estimates based on tattoo complexity, size, placement, and color.",
-    tech: ["React", "Node.js", "PostgreSQL", "Prisma", "Gemini Vision"],
-    metrics: {
-      label: "Core Features",
-      value: "AI Estimate & Commerce",
-    },
-    linkGithub: "https://github.com/BobBieNeno/True_mark_backend.git",
-    linkWeb: "https://truemark-tattoo.vercel.app/",
-    link: "https://github.com/BobBieNeno/truemark-tattoo.git",
-    color: "#F5F5F3",
-  },
-  {
-    id: 9,
-    tag: "Full-Stack",
-    title: "DonateOverlay",
-    desc: "Built a personal full-stack donation platform for streamers and creators, inspired by real-world feedback from friends. The features include real-time donation alerts, OBS integration, QR payments, reward cards, public donation pages, and a customizable dashboard, focusing on modern UX and scalable web architecture.",
-    tech: [
-      "Next.js",
-      "TypeScript",
-      "WebSocket",
-      "Prisma",
-      "PostgreSQL",
-      "Stripe API",
-      "Golang",
-    ],
-    metrics: {
-      label: "Project Type",
-      value: "Personal",
-    },
-    linkGithub: "https://github.com/BobBieNeno/live-donate-backend.git",
-    linkWeb: "https://live-donate.vercel.app/",
-    link: "https://github.com/BobBieNeno/live-donate.git",
-    color: "#F5F5F3",
-  },
+const PROJECT_IMAGES = [
+  "/img/psoter3.png",
+  "/img/psoter4.png",
+  "/img/psoter2.png",
+  "/img/logo_Soft.jpg",
+  "/img/psoter5.png",
+  "/img/psoter6.png",
+  "/img/psoter7.png",
+  "/img/psoter8.png",
+  "/img/psoter9.png",
 ];
 
 export default function Projects() {
   const [hovered, setHovered] = useState(null);
+  const { t } = useTranslation();
+  const projects = t("projects.items", { returnObjects: true });
 
   return (
     <section id="projects" className="projects">
       <div className="container">
         <div className="section-header">
-          <p className="section-eyebrow">Work</p>
+          <p className="section-eyebrow">{t("projects.eyebrow")}</p>
           <h2 className="section-title">
-            Selected Projects &<br />
-            <em>Case Studies</em>
+            {t("projects.titleLine1")}<br />
+            <em>{t("projects.titleEm")}</em>
           </h2>
         </div>
 
         <div className="projects__grid">
-          {PROJECTS.map((p, i) => (
+          {projects.map((project, index) => (
             <article
-              key={p.id}
-              className={`project-card ${hovered === p.id ? "project-card--hovered" : ""}`}
-              onMouseEnter={() => setHovered(p.id)}
+              key={project.id}
+              className={`project-card ${
+                hovered === project.id ? "project-card--hovered" : ""
+              }`}
+              onMouseEnter={() => setHovered(project.id)}
               onMouseLeave={() => setHovered(null)}
             >
-              {/* Top bar */}
               <div className="project-card__header">
-                <span className="project-tag">{p.tag}</span>
-                <span className="project-num">0{i + 1}</span>
+                <span className="project-tag">{project.tag}</span>
+                <span className="project-num">0{index + 1}</span>
               </div>
 
-              {/* Visual placeholder */}
-              {/* <div className="project-card__visual">
-                <div className="project-card__visual-inner">
-                  <span className="project-icon">
-                    {["⬡", "◈", "◉", "⬤", "▣", "◐"][i]}
-                  </span>
-                </div>
-              </div> */}
-              {/* Project Image */}
               <div className="project-card__visual">
                 <div className="project-card__visual-inner">
                   <LoadingImage
-                    src={
-                      [
-                        "/img/psoter3.png",
-                        "/img/psoter4.png",
-                        "/img/psoter2.png",
-                        "/img/logo_Soft.jpg",
-                        "/img/psoter5.png",
-                        "/img/psoter6.png",
-                        "/img/psoter7.png",
-                        "/img/psoter8.png",
-                        "/img/psoter9.png",
-                      ][i]
-                    }
-                    alt={p.title}
+                    src={PROJECT_IMAGES[index]}
+                    alt={project.title}
                     className="project-image"
                   />
                 </div>
               </div>
 
-              {/* Content */}
               <div className="project-card__body">
-                <h3 className="project-title">{p.title}</h3>
-                <p className="project-desc">{p.desc}</p>
+                <h3 className="project-title">{project.title}</h3>
+                <p className="project-desc">{project.desc}</p>
 
                 <div className="project-tech">
-                  {p.tech.map((t) => (
-                    <span key={t} className="tech-chip">
-                      {t}
+                  {project.tech.map((tech) => (
+                    <span key={tech} className="tech-chip">
+                      {tech}
                     </span>
                   ))}
                 </div>
 
                 <div className="project-footer">
                   <div className="project-metric">
-                    <span className="metric-value">{p.metrics.value}</span>
-                    <span className="metric-label">{p.metrics.label}</span>
+                    <span className="metric-value">{project.metrics.value}</span>
+                    <span className="metric-label">{project.metrics.label}</span>
                   </div>
                   <div className="project-actions">
-                    {p.linkGithub?.trim() && (
+                    {project.linkGithub?.trim() && (
                       <a
-                        href={p.linkGithub}
+                        href={project.linkGithub}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="project-link"
-                        aria-label={`View ${p.title} source code`}
+                        aria-label={t("projects.sourceAria", {
+                          title: project.title,
+                        })}
                       >
-                        {/* GitHub Icon */}
                         <svg
                           width="18"
                           height="18"
@@ -225,15 +94,16 @@ export default function Projects() {
                         </svg>
                       </a>
                     )}
-                    {p.linkWeb?.trim() && (
+                    {project.linkWeb?.trim() && (
                       <a
-                        href={p.linkWeb}
+                        href={project.linkWeb}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="project-link"
-                        aria-label={`View ${p.title} website`}
+                        aria-label={t("projects.websiteAria", {
+                          title: project.title,
+                        })}
                       >
-                        {/* Website Icon */}
                         <svg
                           width="18"
                           height="18"
@@ -249,13 +119,15 @@ export default function Projects() {
                         </svg>
                       </a>
                     )}
-                    {p.link?.trim() && (
+                    {project.link?.trim() && (
                       <a
-                        href={p.link}
+                        href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="project-link"
-                        aria-label={`View ${p.title}`}
+                        aria-label={t("projects.viewAria", {
+                          title: project.title,
+                        })}
                       >
                         <svg
                           width="16"

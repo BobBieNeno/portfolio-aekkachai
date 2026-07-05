@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState, type MutableRefObject } from "react";
+import { useTranslation } from "react-i18next";
 import Stories from "react-insta-stories";
 import LoadingImage from "../LoadingImage/LoadingImage";
 
@@ -108,9 +109,13 @@ function ActivityStory({
   activity,
   action,
   userPausedRef,
+  storyLabel,
+  avatarAlt,
 }: Partial<StoryContentProps> & {
   activity: Activity;
   userPausedRef: MutableRefObject<boolean>;
+  storyLabel: string;
+  avatarAlt: string;
 }) {
   return (
     <div className="relative h-full w-full overflow-hidden bg-black text-white">
@@ -134,7 +139,7 @@ function ActivityStory({
             <LoadingImage
               src={avatarImage}
               fallbackSrc={avatarFallback}
-              alt="Profile avatar"
+              alt={avatarAlt}
               className="h-full w-full object-cover"
               wrapperClassName="loading-image--dark"
             />
@@ -153,7 +158,7 @@ function ActivityStory({
       <div className="absolute bottom-0 left-0 right-0 z-10 p-6">
         <div className="rounded-[24px] border border-white/14 bg-black/24 p-5 shadow-2xl backdrop-blur-md">
           <span className="mb-3 inline-flex rounded-full border border-white/12 bg-white/10 px-3 py-1 text-xs font-medium text-white/78">
-            Activity story
+            {storyLabel}
           </span>
           <h3 className="mb-3 text-3xl font-semibold leading-none tracking-tight">
             {activity.title}
@@ -166,6 +171,11 @@ function ActivityStory({
 }
 
 export default function ActivityHighlights() {
+  const { t, i18n } = useTranslation();
+  const activities = useMemo(
+    () => t("activity.items", { returnObjects: true }) as Activity[],
+    [t, i18n.language]
+  );
   const [currentIndex, setCurrentIndex] = useState(0);
   const [storyStartIndex, setStoryStartIndex] = useState(0);
   const [storyKey, setStoryKey] = useState(0);
@@ -184,11 +194,13 @@ export default function ActivityHighlights() {
           <ActivityStory
             activity={activity}
             userPausedRef={userPausedRef}
+            storyLabel={t("activity.storyLabel")}
+            avatarAlt={t("activity.avatarAlt")}
             {...storyProps}
           />
         ),
       })),
-    []
+    [activities, t]
   );
 
   return (
@@ -201,15 +213,14 @@ export default function ActivityHighlights() {
         <div className="mb-12 flex flex-col gap-6 lg:mb-14 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-2xl">
             <p className="mb-4 text-xs font-medium uppercase tracking-[0.24em] text-white/45">
-              Activity Highlights
+              {t("activity.eyebrow")}
             </p>
             <h2 className="text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
-              Life, moments, and experiences.
-              A journey that transcends the limits of the code.
+              {t("activity.title")}
             </h2>
           </div>
           <p className="max-w-md text-sm leading-7 text-white/58">
-            A collection of moments, hobbies, and experiences that inspire creativity, build connections, and shape my journey beyond code.
+            {t("activity.lead")}
           </p>
         </div>
 
@@ -224,7 +235,9 @@ export default function ActivityHighlights() {
                     event.stopPropagation();
                     setIsStoryPaused((paused) => !paused);
                   }}
-                  aria-label={isStoryPaused ? "Play story" : "Pause story"}
+                  aria-label={
+                    isStoryPaused ? t("activity.playStory") : t("activity.pauseStory")
+                  }
                 >
                   {isStoryPaused ? (
                     <svg
@@ -250,7 +263,7 @@ export default function ActivityHighlights() {
                   type="button"
                   className="grid h-6 w-6 place-items-center text-white/90"
                   onClick={(event) => event.stopPropagation()}
-                  aria-label="More story options"
+                  aria-label={t("activity.moreOptions")}
                 >
                   <span className="flex items-center gap-0.5">
                     <span className="h-1 w-1 rounded-full bg-white" />
@@ -301,7 +314,7 @@ export default function ActivityHighlights() {
           <div className="min-w-0">
             <div className="mb-6">
               <span className="font-mono text-xs text-white/40">
-                Story {String(currentIndex + 1).padStart(2, "0")} /{" "}
+                {t("activity.storyCount")} {String(currentIndex + 1).padStart(2, "0")} /{" "}
                 {String(activities.length).padStart(2, "0")}
               </span>
               <h3 className="mt-3 text-3xl font-semibold tracking-tight text-white md:text-4xl">

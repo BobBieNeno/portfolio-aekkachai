@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import './Hero.css'
 
 const SHAPES = [
@@ -23,6 +24,7 @@ const SHAPES = [
 
 export default function Hero() {
   const heroRef = useRef(null)
+  const { t } = useTranslation()
 
   useEffect(() => {
     const shapes = heroRef.current?.querySelectorAll('.shape')
@@ -102,33 +104,33 @@ export default function Hero() {
 
       {/* Hero content */}
       <div className="hero__content">
-        <div className="hero__tag">Computer Science Portfolio</div>
+        <div className="hero__tag">{t('hero.tag')}</div>
         <h1 className="hero__headline">
-          Portfolio&nbsp;&amp;&nbsp;Resume<br />
-          <em>Digital Systems</em>
+          {t('hero.headline.line1')}<br />
+          <em>{t('hero.headline.line2')}</em>
         </h1>
         <p className="hero__sub">
-         Bachelor's degree in Computer Science · Full-Stack Developer · UI/UX Enthusiast<br />
-          Crafting performant, elegant software from idea to deployment.
+          {t('hero.subLine1')}<br />
+          {t('hero.subLine2')}
         </p>
         <div className="hero__actions">
           <button
             className="hero__btn hero__btn--primary"
             onClick={() => document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' })}
           >
-            View Projects
+            {t('hero.viewProjects')}
           </button>
           <button
             className="hero__btn hero__btn--secondary"
             onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
           >
-            Get in Touch
+            {t('hero.getInTouch')}
           </button>
         </div>
       </div>
 
       {/* Scroll indicator */}
-      <button className="hero__scroll" onClick={scrollToAbout} aria-label="Scroll down">
+      <button className="hero__scroll" onClick={scrollToAbout} aria-label={t('hero.scrollDown')}>
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
           <path d="M10 3v14M4 11l6 6 6-6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>

@@ -129,12 +129,12 @@
 }
 .form-field input::placeholder,
 .form-field textarea::placeholder {
-  color: #bbb;
+  color: var(--color-placeholder);
 }
 .form-field input:focus,
 .form-field textarea:focus {
   border-color: var(--color-text);
-  box-shadow: 0 0 0 3px rgba(0,0,0,0.06);
+  box-shadow: 0 0 0 3px var(--focus-ring);
 }
 .form-field input:disabled,
 .form-field textarea:disabled {
@@ -148,7 +148,7 @@
   padding: 14px 28px;
   border-radius: var(--radius-full);
   background: var(--color-text);
-  color: #fff;
+  color: var(--color-on-strong);
   cursor: pointer;
   border: none;
   display: flex;
@@ -159,7 +159,7 @@
   align-self: flex-start;
 }
 .form-submit:hover:not(:disabled) {
-  background: #333;
+  background: var(--color-strong-hover);
   transform: translateY(-1px);
   box-shadow: var(--shadow-md);
 }
@@ -167,6 +167,7 @@
 
 .form-submit.sent {
   background: #16a34a;
+  color: #fff;
 }
 
 /* Spinner */
