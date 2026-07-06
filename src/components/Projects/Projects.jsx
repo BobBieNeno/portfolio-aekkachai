@@ -13,6 +13,7 @@ const PROJECT_IMAGES = [
   "/img/psoter7.png",
   "/img/psoter8.png",
   "/img/psoter9.png",
+  "/img/psoter10.png",
 ];
 
 export default function Projects() {
@@ -26,7 +27,8 @@ export default function Projects() {
         <div className="section-header">
           <p className="section-eyebrow">{t("projects.eyebrow")}</p>
           <h2 className="section-title">
-            {t("projects.titleLine1")}<br />
+            {t("projects.titleLine1")}
+            <br />
             <em>{t("projects.titleEm")}</em>
           </h2>
         </div>
@@ -70,8 +72,12 @@ export default function Projects() {
 
                 <div className="project-footer">
                   <div className="project-metric">
-                    <span className="metric-value">{project.metrics.value}</span>
-                    <span className="metric-label">{project.metrics.label}</span>
+                    <span className="metric-value">
+                      {project.metrics.value}
+                    </span>
+                    <span className="metric-label">
+                      {project.metrics.label}
+                    </span>
                   </div>
                   <div className="project-actions">
                     {project.linkGithub?.trim() && (
