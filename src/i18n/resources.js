@@ -202,7 +202,7 @@ export const resources = {
             id: 10,
             tag: "Full Stack",
             title: "SME POS",
-            desc: "Full-stack POS and business management systems for SMEs, supporting point-of-sale functionality, barcode search/scanning, shopping cart management, real-time stock updates, product management, inventory management, raw material management, Bill of Materials (BOM), supplier management, revenue and expense tracking, and profit summaries. The system includes dashboards for sales analysis, best-selling products, inventory levels, sales forecasting, CRM, promotions, Firebase Auth user authorization, and a Go backend connecting to PostgreSQL, Redis, and WebSocket, including import/export capabilities, and admin support. Email: nicha@loomandlane.example Password: password",
+            desc: "Full-stack POS and business management system for SMEs featuring POS, inventory, BOM, CRM, analytics, real-time stock, sales forecasting, Firebase Auth, and a Go backend with PostgreSQL, Redis, WebSocket, and import/export support. Email: nicha@loomandlane.example Password: password",
             tech: [
               "React",
               "Go (Gin)",
@@ -559,7 +559,7 @@ export const resources = {
             id: 10,
             tag: "Full Stack",
             title: "SME POS",
-            desc: "พัฒนาระบบ POS และระบบจัดการธุรกิจสำหรับ SME แบบ full-stack รองรับการขายหน้าร้าน ค้นหา/สแกนบาร์โค้ด ตะกร้าสินค้า การตัดสต็อกแบบเรียลไทม์ จัดการสินค้า คลังสินค้า วัตถุดิบ BOM ซัพพลายเออร์ รายรับรายจ่าย และสรุปกำไร พร้อมแดชบอร์ดวิเคราะห์ยอดขาย สินค้าขายดี สินค้าค้างสต็อก การพยากรณ์ยอดขาย CRM โปรโมชั่น ระบบสิทธิ์ผู้ใช้ Firebase Auth และ backend Go ที่เชื่อม PostgreSQL, Redis, WebSocket รวมถึง import/export และระบบ admin",
+            desc: "ระบบ POS และระบบบริหารจัดการธุรกิจแบบครบวงจรสำหรับ SME ที่มาพร้อมฟังก์ชั่น POS, การจัดการสินค้าคงคลัง, BOM, CRM, การวิเคราะห์ข้อมูล, สต็อกแบบเรียลไทม์, การพยากรณ์ยอดขาย, Firebase Auth และแบ็กเอนด์ที่เขียนด้วยภาษา Go พร้อม PostgreSQL, Redis, WebSocket และรองรับการนำเข้า/ส่งออกข้อมูล Email: nicha@loomandlane.example Password: password",
             tech: [
               "React",
               "Go (Gin)",
